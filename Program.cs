@@ -45,7 +45,7 @@ namespace BirthdaysReminder
                 }
                 if (people.Count > 1)
                 {
-                    message = $"Сегодня {dayNow}.{monthNow} отмечают день рождения:\n\n";
+                    message = $"РЎРµРіРѕРґРЅСЏ {dayNow}.{monthNow} РѕС‚РјРµС‡Р°СЋС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ:\n\n";
                     foreach (string[] man in people)
                     {
                         message += "\t" + man[0] + " (" + GetAge(yearNow, man[3]) + ")\n";
@@ -53,18 +53,18 @@ namespace BirthdaysReminder
                 }
                 else if (people.Count == 1)
                 {
-                    message = $"Сегодня {dayNow}.{monthNow} отмечает день рождения\n\n" + "\t" + people[0][0] + " (" + GetAge(yearNow, people[0][3]) + ")\n";
+                    message = $"РЎРµРіРѕРґРЅСЏ {dayNow}.{monthNow} РѕС‚РјРµС‡Р°РµС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ\n\n" + "\t" + people[0][0] + " (" + GetAge(yearNow, people[0][3]) + ")\n";
 
                 }
                 else
                 {
-                    message = $"Сегодня {dayNow}.{monthNow} никто не отмечает день рождения";
+                    message = $"РЎРµРіРѕРґРЅСЏ {dayNow}.{monthNow} РЅРёРєС‚Рѕ РЅРµ РѕС‚РјРµС‡Р°РµС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ";
                 }
                 form.label1.Text = message;
             }
             catch (System.IO.FileNotFoundException ex)
             {
-                form.label1.Text = "Не найден файл с данными, а именно: " + ex.Message;
+                form.label1.Text = "РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» СЃ РґР°РЅРЅС‹РјРё, Р° РёРјРµРЅРЅРѕ: " + ex.Message;
             }
             Application.Run(form);
         }
@@ -74,19 +74,19 @@ namespace BirthdaysReminder
             string age = (yearNow - int.Parse(year)).ToString();
             if (int.Parse(age) % 5 == 0)
             {
-                age = "юбилей: " + age;
+                age = "СЋР±РёР»РµР№: " + age;
             }
             if ((age.EndsWith('2') || age.EndsWith('3') || age.EndsWith('4')) && !age.StartsWith('1'))
             {
-                age += " года";
+                age += " РіРѕРґР°";
             }
             else if (age.EndsWith('1') && (!age.StartsWith('1') || age.Length == 1))
             {
-                age += " год";
+                age += " РіРѕРґ";
             }
             else
             {
-                age += " лет";
+                age += " Р»РµС‚";
             }
             return age;
         }
