@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\WHO\\source\\repos\\BirthdaysReminder\\BirthdaysReminder.csproj",
+      "projectUniqueName": "C:\\Users\\WHO\\Documents\\BirthdaysReminder\\BirthdaysReminder.csproj",
       "projectName": "BirthdaysReminder",
-      "projectPath": "C:\\Users\\WHO\\source\\repos\\BirthdaysReminder\\BirthdaysReminder.csproj",
+      "projectPath": "C:\\Users\\WHO\\Documents\\BirthdaysReminder\\BirthdaysReminder.csproj",
       "packagesPath": "C:\\Users\\WHO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\WHO\\source\\repos\\BirthdaysReminder\\obj\\",
+      "outputPath": "C:\\Users\\WHO\\Documents\\BirthdaysReminder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
