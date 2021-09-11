@@ -41,18 +41,17 @@ namespace BirthdaysReminder
                 People = GetPeopleList(Lines);
                 Text = GetTextToday(People);
                 ShowText(Text);
-                //People = GetPeopleList(Lines, "thisMonth");
-                //Text = GetTextThisMonth(People);
-                //ShowText(Text);
-                //WriteFile("db.csv", AddText(Lines));
             }
             catch (System.IO.FileNotFoundException ex)
             {
                 ShowText(ex.Message);
+                form.thisMonthButton.Enabled = false;
             }
             catch (FormatException ex)
             {
                 ShowText(ex.Message);
+                form.thisMonthButton.Enabled = false;
+                form.AddBDButton.Enabled = false;
             }
             Application.Run(form);
         }
@@ -137,6 +136,15 @@ namespace BirthdaysReminder
                             people.Add(man);
                         }
                     }
+                    else if(mode == "all")
+                    {
+                            Dictionary<string, string> man = new();
+                            man.Add("name", name);
+                            man.Add("day", day);
+                            man.Add("month", month);
+                            man.Add("year", year);
+                            people.Add(man);
+                    }
                     else
                     {
                         if (month == MonthNow)
@@ -202,6 +210,18 @@ namespace BirthdaysReminder
         }
 
 
+        public static string GetTextAll(List<Dictionary<string, string>> people)
+        {
+            string text;
+                text = $"Все дни рождения:\n\n";
+                foreach (Dictionary<string, string> man in people)
+                {
+                    text += $"\t{man["name"]} ({man["day"]}.{man["month"]}.{man["year"]})\n";
+                }
+            return text;
+        }
+
+
         public static string GetAge(string year)
         {
             int age = YearNow - int.Parse(year);
@@ -230,7 +250,7 @@ namespace BirthdaysReminder
         {
             if (lines == null)
             {
-                lines = new string[0];
+                lines = Array.Empty<string>();
             }
             string num = "1";
             if (lines.Length != 0)
@@ -258,52 +278,12 @@ namespace BirthdaysReminder
         }
 
 
-        public static string AddText(string[] lines)
-        {
-            if (lines == null)
-            {
-                lines = new string[0];
-            }
-            string num = "1";
-            if (lines.Length != 0)
-            {
-                num = (int.Parse(lines[lines.Length - 1].Split(";")[0]) + 1).ToString();
-            }
-            ShowText("Введите ФИО");
-            string name = GetTextFromUser();
-            while (true)
-            {
-                if (!ValidInput(name: name))
-                {
-                    ShowText("Введите корректные ФИО (например Иванов Иван Иванович):");
-                    name = GetTextFromUser().ToUpper();
-                }
-                else
-                {
-                    break;
-                }
-            }
-            ShowText("Введите дату рождения (в формате дд.мм.гггг):");
-            string birthday = GetTextFromUser();
-            while (true)
-            {
-                if (!ValidInput(birthday: birthday))
-                {
-                    ShowText("Введите корректную дату рождения (например 02.08.1999):");
-                    birthday = GetTextFromUser();
-                }
-                else
-                {
-                    break;
-                }
-            }
-            string result = $"{num};;{name.ToUpper()};;{birthday};\n";
-            return result;
-        }
-
-
         public static bool ValidInput(string name = "nameParam", string birthday = "birthdayParam")
         {
+            if (name == "nameParam" && birthday == "birthdayParam")
+            {
+                return false;
+            }
             if (name != "nameParam")
             {
                 if (name.Length <= 0)

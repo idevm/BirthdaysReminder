@@ -33,7 +33,9 @@ namespace BirthdaysReminder
             this.thisMonthButton = new System.Windows.Forms.Button();
             this.AddBDButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // thisMonthButton
@@ -42,7 +44,7 @@ namespace BirthdaysReminder
             this.thisMonthButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.thisMonthButton.Name = "thisMonthButton";
             this.thisMonthButton.UseVisualStyleBackColor = true;
-            this.thisMonthButton.Click += new System.EventHandler(this.thisMonthButton_Click);
+            this.thisMonthButton.Click += new System.EventHandler(this.ThisMonthButton_Click);
             // 
             // AddBDButton
             // 
@@ -59,23 +61,30 @@ namespace BirthdaysReminder
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Name = "textBox1";
             // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Name = "panel1";
+            // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
-            this.label1.AutoEllipsis = true;
             this.label1.Name = "label1";
             // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.Controls.Add(this.label1);
+            resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.AddBDButton);
             this.Controls.Add(this.thisMonthButton);
             this.MaximizeBox = false;
             this.Name = "Form1";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,6 +95,7 @@ namespace BirthdaysReminder
         public System.Windows.Forms.Button thisMonthButton;
         public System.Windows.Forms.Button AddBDButton;
         public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Label label1;
     }
 }
