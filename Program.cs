@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BirthdaysReminder
@@ -58,7 +56,7 @@ namespace BirthdaysReminder
 
         public static void ShowText(string txt)
         {
-           form.label1.Text = txt;
+            form.label1.Text = txt;
         }
 
 
@@ -136,14 +134,14 @@ namespace BirthdaysReminder
                             people.Add(man);
                         }
                     }
-                    else if(mode == "all")
+                    else if (mode == "all")
                     {
-                            Dictionary<string, string> man = new();
-                            man.Add("name", name);
-                            man.Add("day", day);
-                            man.Add("month", month);
-                            man.Add("year", year);
-                            people.Add(man);
+                        Dictionary<string, string> man = new();
+                        man.Add("name", name);
+                        man.Add("day", day);
+                        man.Add("month", month);
+                        man.Add("year", year);
+                        people.Add(man);
                     }
                     else
                     {
@@ -213,11 +211,11 @@ namespace BirthdaysReminder
         public static string GetTextAll(List<Dictionary<string, string>> people)
         {
             string text;
-                text = $"Все дни рождения:\n\n";
-                foreach (Dictionary<string, string> man in people)
-                {
-                    text += $"\t{man["name"]} ({man["day"]}.{man["month"]}.{man["year"]})\n";
-                }
+            text = $"Все дни рождения:\n\n";
+            foreach (Dictionary<string, string> man in people)
+            {
+                text += $"\t{man["name"]} ({man["day"]}.{man["month"]}.{man["year"]})\n";
+            }
             return text;
         }
 
