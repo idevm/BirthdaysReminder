@@ -76,7 +76,7 @@ namespace BirthdaysReminder
             }
             catch (System.IO.FileNotFoundException ex)
             {
-                System.IO.FileNotFoundException noFile = new("Не найден файл с данными, а именно: " + ex.Message);
+                System.IO.FileNotFoundException noFile = new("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " + ex.Message);
                 throw noFile;
             }
         }
@@ -92,7 +92,7 @@ namespace BirthdaysReminder
         {
             if (lines == null || lines.Length == 0)
             {
-                throw new FormatException("Ошибка: отсутсвуют данные");
+                throw new FormatException("пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
             }
             List<Dictionary<string, string>> people = new();
             foreach (string line in lines)
@@ -102,27 +102,27 @@ namespace BirthdaysReminder
                     string[] values = line.Split(";");
                     if (values.Length != 6)
                     {
-                        throw new FormatException($"Неправильный формат таблицы: ошибка в строке  {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  {Array.IndexOf(lines, line) + 1}");
                     }
                     string name = values[2];
                     if (name.Length <= 0)
                     {
-                        throw new FormatException($"Отсутствует имя в строке {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {Array.IndexOf(lines, line) + 1}");
                     }
                     string day = values[4].Split(".")[0];
                     if (!int.TryParse(day, out int num) || day.Length != 2 || num > 31)
                     {
-                        throw new FormatException($"Неправильный формат дня в строке {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {Array.IndexOf(lines, line) + 1}");
                     }
                     string month = values[4].Split(".")[1];
                     if (!int.TryParse(month, out num) || month.Length != 2 || num > 12)
                     {
-                        throw new FormatException($"Неправильный формат месяца в строке {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {Array.IndexOf(lines, line) + 1}");
                     }
                     string year = values[4].Split(".")[2];
                     if (!int.TryParse(year, out num) || year.Length != 4 || num > YearNow)
                     {
-                        throw new FormatException($"Неправильный формат года в строке {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ {Array.IndexOf(lines, line) + 1}");
                     }
                     if (mode == "today")
                     {
@@ -160,7 +160,7 @@ namespace BirthdaysReminder
                 }
                 catch (FormatException ex)
                 {
-                    FormatException badFormat = new("База данных повреждена или формат данных не соответствует установленному!\n" + ex.Message);
+                    FormatException badFormat = new("пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!\n" + ex.Message);
                     throw badFormat;
                 }
             }
@@ -173,7 +173,7 @@ namespace BirthdaysReminder
             string text;
             if (people.Count > 1)
             {
-                text = $"Сегодня {DayNow}.{MonthNow} отмечают день рождения:\n\n";
+                text = $"РЎРµРіРѕРґРЅСЏ {DayNow}.{MonthNow} РѕС‚РјРµС‡Р°СЋС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ:\n\n";
                 foreach (Dictionary<string, string> man in people)
                 {
                     text += $"\t{man["name"]} ({ GetAge(man["year"])})\n";
@@ -182,8 +182,8 @@ namespace BirthdaysReminder
             else
             {
                 text = people.Count == 1
-                    ? $"Сегодня {DayNow}.{MonthNow} отмечает день рождения\n\n\t{ people[0]["name"]} ({GetAge(people[0]["year"])})\n"
-                    : $"Сегодня {DayNow}.{MonthNow} никто не отмечает день рождения";
+                    ? $"РЎРµРіРѕРґРЅСЏ {DayNow}.{MonthNow} РѕС‚РјРµС‡Р°РµС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ\n\n\t{ people[0]["name"]} ({GetAge(people[0]["year"])})\n"
+                    : $"РЎРµРіРѕРґРЅСЏ {DayNow}.{MonthNow} РЅРёРєС‚Рѕ РЅРµ РѕС‚РјРµС‡Р°РµС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ";
             }
             return text;
         }
@@ -194,7 +194,7 @@ namespace BirthdaysReminder
             string text;
             if (people.Count > 1)
             {
-                text = $"В этом месяце отмечают день рождения:\n\n";
+                text = $"Р’ СЌС‚РѕРј РјРµСЃСЏС†Рµ РѕС‚РјРµС‡Р°СЋС‚ РґРЅРё СЂРѕР¶РґРµРЅРёСЏ:\n\n";
                 foreach (Dictionary<string, string> man in people)
                 {
                     text += $"\t{man["name"]} ({man["day"]}.{man["month"]})\n";
@@ -203,8 +203,8 @@ namespace BirthdaysReminder
             else
             {
                 text = people.Count == 1
-                    ? $"В этом месяце отмечает день рождения\n\n\t{people[0]["name"]} ({people[0]["day"]}.{people[0]["month"]})\n"
-                    : $"В этом месяце никто не отмечает день рождения";
+                    ? $"Р’ СЌС‚РѕРј РјРµСЃСЏС†Рµ РѕС‚РјРµС‡Р°РµС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ\n\n\t{people[0]["name"]} ({people[0]["day"]}.{people[0]["month"]})\n"
+                    : $"Р’ СЌС‚РѕРј РјРµСЃСЏС†Рµ РЅРёРєС‚Рѕ РЅРµ РѕС‚РјРµС‡Р°РµС‚ РґРµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ";
             }
             return text;
         }
@@ -213,7 +213,7 @@ namespace BirthdaysReminder
         public static string GetTextAll(List<Dictionary<string, string>> people)
         {
             string text;
-                text = $"Все дни рождения:\n\n";
+                text = $"Р’СЃРµ РґРЅРё СЂРѕР¶РґРµРЅРёСЏ:\n\n";
                 foreach (Dictionary<string, string> man in people)
                 {
                     text += $"\t{man["name"]} ({man["day"]}.{man["month"]}.{man["year"]})\n";
@@ -228,19 +228,20 @@ namespace BirthdaysReminder
             string str = age.ToString();
             if (age % 5 == 0 && age >= 50)
             {
-                str = "юбилей: " + str;
+                str = "СЋР±РёР»РµР№: " + str;
             }
             if ((str.EndsWith('2') || str.EndsWith('3') || str.EndsWith('4')) && (!str.StartsWith('1') || str.Length == 3))
             {
-                str += " года";
+                str += " РіРѕРґР°";
             }
             else if (str.EndsWith('1') && (!str.StartsWith('1') || str.Length == 1 || str.Length == 3))
             {
-                str += " год";
+
+                str += " РіРѕРґ";
             }
             else
             {
-                str += " лет";
+                str += " Р»РµС‚";
             }
             return str;
         }
@@ -261,16 +262,16 @@ namespace BirthdaysReminder
             {
                 if (!ValidInput(name: name))
                 {
-                    throw new FormatException("Введите корректные ФИО (например Иванов Иван Иванович)");
+                    throw new FormatException("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)");
                 }
                 if (!ValidInput(birthday: birthday))
                 {
-                    throw new FormatException("Введите корректную дату рождения (например 02.08.1999)");
+                    throw new FormatException("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 02.08.1999)");
                 }
             }
             catch (FormatException ex)
             {
-                FormatException badInput = new("Введены некорректные данные\n" + ex.Message);
+                FormatException badInput = new("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ\n" + ex.Message);
                 throw badInput;
             }
             string result = $"{num};;{name.ToUpper()};;{birthday};\n";
