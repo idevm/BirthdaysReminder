@@ -74,7 +74,7 @@ namespace BirthdaysReminder
             }
             catch (System.IO.FileNotFoundException ex)
             {
-                System.IO.FileNotFoundException noFile = new("�� ������ ���� � �������, � ������: " + ex.Message);
+                System.IO.FileNotFoundException noFile = new("Не найден файл с данными, а именно: " + ex.Message);
                 throw noFile;
             }
         }
@@ -90,7 +90,7 @@ namespace BirthdaysReminder
         {
             if (lines == null || lines.Length == 0)
             {
-                throw new FormatException("������: ���������� ������");
+                throw new FormatException("Ошибка: отсутсвуют данные");
             }
             List<Dictionary<string, string>> people = new();
             foreach (string line in lines)
@@ -100,27 +100,27 @@ namespace BirthdaysReminder
                     string[] values = line.Split(";");
                     if (values.Length != 6)
                     {
-                        throw new FormatException($"������������ ������ �������: ������ � ������  {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"Неправильный формат таблицы: ошибка в строке  {Array.IndexOf(lines, line) + 1}");
                     }
                     string name = values[2];
                     if (name.Length <= 0)
                     {
-                        throw new FormatException($"����������� ��� � ������ {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"Отсутствует имя в строке {Array.IndexOf(lines, line) + 1}");
                     }
                     string day = values[4].Split(".")[0];
                     if (!int.TryParse(day, out int num) || day.Length != 2 || num > 31)
                     {
-                        throw new FormatException($"������������ ������ ��� � ������ {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"Неправильный формат дня в строке {Array.IndexOf(lines, line) + 1}");
                     }
                     string month = values[4].Split(".")[1];
                     if (!int.TryParse(month, out num) || month.Length != 2 || num > 12)
                     {
-                        throw new FormatException($"������������ ������ ������ � ������ {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"Неправильный формат месяца в строке {Array.IndexOf(lines, line) + 1}");
                     }
                     string year = values[4].Split(".")[2];
                     if (!int.TryParse(year, out num) || year.Length != 4 || num > YearNow)
                     {
-                        throw new FormatException($"������������ ������ ���� � ������ {Array.IndexOf(lines, line) + 1}");
+                        throw new FormatException($"Неправильный формат года в строке {Array.IndexOf(lines, line) + 1}");
                     }
                     if (mode == "today")
                     {
@@ -158,7 +158,7 @@ namespace BirthdaysReminder
                 }
                 catch (FormatException ex)
                 {
-                    FormatException badFormat = new("���� ������ ���������� ��� ������ ������ �� ������������� ��������������!\n" + ex.Message);
+                    FormatException badFormat = new("База данных повреждена или формат данных не соответствует установленному!\n" + ex.Message);
                     throw badFormat;
                 }
             }
@@ -260,16 +260,16 @@ namespace BirthdaysReminder
             {
                 if (!ValidInput(name: name))
                 {
-                    throw new FormatException("������� ���������� ��� (�������� ������ ���� ��������)");
+                    throw new FormatException("Введите корректные ФИО (например Иванов Иван Иванович)");
                 }
                 if (!ValidInput(birthday: birthday))
                 {
-                    throw new FormatException("������� ���������� ���� �������� (�������� 02.08.1999)");
+                    throw new FormatException("Введите корректную дату рождения (например 02.08.1999)");
                 }
             }
             catch (FormatException ex)
             {
-                FormatException badInput = new("������� ������������ ������\n" + ex.Message);
+                FormatException badInput = new("Введены некорректные данные\n" + ex.Message);
                 throw badInput;
             }
             string result = $"{num};;{name.ToUpper()};;{birthday};\n";
