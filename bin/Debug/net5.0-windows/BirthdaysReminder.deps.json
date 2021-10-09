@@ -9,11 +9,6 @@
       "BirthdaysReminder/1.0.0": {
         "runtime": {
           "BirthdaysReminder.dll": {}
-        },
-        "resources": {
-          "ru/BirthdaysReminder.resources.dll": {
-            "locale": "ru"
-          }
         }
       }
     }
