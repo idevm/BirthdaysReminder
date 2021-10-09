@@ -30,7 +30,7 @@ namespace BirthdaysReminder
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.thisMonthButton = new System.Windows.Forms.Button();
+            this.ModeButton = new System.Windows.Forms.Button();
             this.AddBDButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,11 +40,11 @@ namespace BirthdaysReminder
             // 
             // thisMonthButton
             // 
-            resources.ApplyResources(this.thisMonthButton, "thisMonthButton");
-            this.thisMonthButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.thisMonthButton.Name = "thisMonthButton";
-            this.thisMonthButton.UseVisualStyleBackColor = true;
-            this.thisMonthButton.Click += new System.EventHandler(this.ThisMonthButton_Click);
+            resources.ApplyResources(this.ModeButton, "thisMonthButton");
+            this.ModeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ModeButton.Name = "thisMonthButton";
+            this.ModeButton.UseVisualStyleBackColor = true;
+            this.ModeButton.Click += new System.EventHandler(this.ModeButton_Click);
             // 
             // AddBDButton
             // 
@@ -80,7 +80,7 @@ namespace BirthdaysReminder
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.AddBDButton);
-            this.Controls.Add(this.thisMonthButton);
+            this.Controls.Add(this.ModeButton);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.panel1.ResumeLayout(false);
@@ -92,7 +92,7 @@ namespace BirthdaysReminder
 
         #endregion
 
-        public System.Windows.Forms.Button thisMonthButton;
+        public System.Windows.Forms.Button ModeButton;
         public System.Windows.Forms.Button AddBDButton;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.Panel panel1;

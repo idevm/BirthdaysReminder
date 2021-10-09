@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace BirthdaysReminder
 {
@@ -16,16 +15,21 @@ namespace BirthdaysReminder
     {
         public BDapp()
         {
-            this.form = new(this);
+            Form = new(this);
         }
 
+        private Form1 form;
+
         private List<string> lines;
+
         private List<Dictionary<string, string>> people = new();
+
         private string text;
 
         public string DayNow { get; set; } = DateTime.Now.Day.ToString().Length == 2
-                   ? DateTime.Now.Day.ToString()
-                   : "0" + DateTime.Now.Day.ToString();
+            ? DateTime.Now.Day.ToString()
+            : "0" + DateTime.Now.Day.ToString();
+
         public string MonthNow { get; set; } = DateTime.Now.Month.ToString().Length == 2
             ? DateTime.Now.Month.ToString()
             : "0" + DateTime.Now.Month.ToString();
@@ -38,15 +42,16 @@ namespace BirthdaysReminder
 
         public string Text { get => text; set => text = value; }
 
-        public Form1 form;
+        public Form1 Form { get => form; set => form = value; }
 
         public string tName;
+
         public string tBD;
 
 
         public void ShowText(string txt)
         {
-            form.label1.Text = txt;
+            Form.label1.Text = txt;
         }
 
 
@@ -159,6 +164,7 @@ namespace BirthdaysReminder
             }
             return people;
         }
+
 
         public string GetText(List<Dictionary<string, string>> people, TimeMode tm = TimeMode.today)
         {
