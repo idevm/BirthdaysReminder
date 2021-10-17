@@ -12,49 +12,45 @@ namespace BirthdaysReminder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             BDapp app = new();
+            Form1 form = new(app);
             try
             {
-                Today(app);
+                form.app.Persons = app.GetPeopleList(app.ReadFile("db.csv"));
+                Today(form);
             }
             catch (System.IO.FileNotFoundException ex)
             {
-                app.ShowText(ex.Message);
-                app.Form.ModeButton.Enabled = false;
+                form.label1.Text = ex.Message;
+                form.ModeButton.Enabled = false;
             }
             catch (FormatException ex)
             {
-                app.ShowText(ex.Message);
-                app.Form.ModeButton.Enabled = false;
-                app.Form.AddBDButton.Enabled = false;
+                form.label1.Text = ex.Message;
+                form.ModeButton.Enabled = false;
+                form.AddBDButton.Enabled = false;
             }
-            Application.Run(app.Form);
+            Application.Run(form);
         }
 
-        public static void Today(BDapp app)
+        public static void Today(Form1 form)
         {
-            app.Lines = app.ReadFile("db.csv");
-            app.People = app.GetPeopleList(app.Lines);
-            app.Text = app.GetText(app.People);
-            app.ShowText(app.Text);
-            app.Form.Text = "Дни рождения сегодня";
+            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons));
+            form.label1.Text = form.app.Text;
+            form.Text = "Дни рождения сегодня";
         }
 
-        public static void ThisMonth(BDapp app)
+        public static void ThisMonth(Form1 form)
         {
-            app.Lines = app.ReadFile("db.csv");
-            app.People = app.GetPeopleList(app.Lines, TimeMode.thisMonth);
-            app.Text = app.GetText(app.People, TimeMode.thisMonth);
-            app.ShowText(app.Text);
-            app.Form.Text = "Дни рождения в этом месяце";
+            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.thisMonth), Mode.thisMonth);
+            form.label1.Text = form.app.Text;
+            form.Text = "Дни рождения в этом месяце";
         }
 
-        public static void ThisYear(BDapp app)
+        public static void ThisYear(Form1 form)
         {
-            app.Lines = app.ReadFile("db.csv");
-            app.People = app.GetPeopleList(app.Lines, TimeMode.thisYear);
-            app.Text = app.GetText(app.People, TimeMode.thisYear);
-            app.ShowText(app.Text);
-            app.Form.Text = "Все дни рождения";
+            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.thisYear), Mode.thisYear);
+            form.label1.Text = form.app.Text;
+            form.Text = "Все дни рождения";
         }
     }
 }

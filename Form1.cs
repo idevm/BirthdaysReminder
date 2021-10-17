@@ -13,38 +13,42 @@ namespace BirthdaysReminder
 
         public BDapp app;
 
+        public string tName = "";
+
+        public string tBD = "";
+
         private void ModeButton_Click(object sender, EventArgs e)
         {
             if (this.ModeButton.Text == "В этом месяце")
             {
-                Program.ThisMonth(app);
+                Program.ThisMonth(this);
                 this.ModeButton.Text = "Все";
             }
             else if (this.ModeButton.Text == "Сегодня" || this.ModeButton.Text == "ОК")
             {
-                Program.Today(app);
+                Program.Today(this);
                 this.ModeButton.Text = "В этом месяце";
             }
             else if (this.ModeButton.Text == "Все")
             {
-                Program.ThisYear(app);
+                Program.ThisYear(this);
                 this.ModeButton.Text = "Сегодня";
             }
             else if (this.ModeButton.Text == "Отменить")
             {
                 this.ModeButton.Text = "В этом месяце";
-                Program.Today(app);
+                Program.Today(this);
                 this.AddBDButton.Text = "Добавить ДР";
-                app.Form.textBox1.Text = "";
-                app.Form.textBox1.Enabled = false;
+                textBox1.Text = "";
+                textBox1.Enabled = false;
             }
             else if (this.ModeButton.Text == "Назад ")
             {
-                app.Form.textBox1.Focus();
-                app.Form.label1.Text = "Введите ФИО";
+                textBox1.Focus();
+                label1.Text = "Введите ФИО";
                 this.AddBDButton.Text = "Далее";
                 this.ModeButton.Text = "Отменить";
-                app.Form.textBox1.Text = "";
+                textBox1.Text = "";
             }
         }
 
@@ -53,54 +57,55 @@ namespace BirthdaysReminder
         {
             if (this.AddBDButton.Text == "Добавить ДР")
             {
-                app.Form.textBox1.Enabled = true;
-                app.Form.textBox1.Focus();
-                app.Form.label1.Text = "Введите ФИО";
+                textBox1.Enabled = true;
+                textBox1.Focus();
+                label1.Text = "Введите ФИО";
                 this.AddBDButton.Text = "Далее";
                 this.ModeButton.Text = "Отменить";
-                app.Form.Text = "Добавление данных";
+                Text = "Добавление данных";
             }
             else if (this.AddBDButton.Text == "Далее")
             {
-                app.Form.textBox1.Focus();
-                app.tName = app.Form.textBox1.Text;
-                if (app.ValidInput(name: app.tName))
+                textBox1.Focus();
+                tName = textBox1.Text;
+                if (app.ValidInput(name: tName))
                 {
-                    app.Form.label1.Text = "Введите дату рождения\n(в формате ДД.ММ.ГГГГ)";
-                    app.Form.textBox1.Text = "";
+                    label1.Text = "Введите дату рождения\n(в формате ДД.ММ.ГГГГ)";
+                    textBox1.Text = "";
                     this.AddBDButton.Text = "Далее ";
                     this.ModeButton.Text = "Назад ";
                 }
                 else
                 {
-                    app.Form.label1.Text = "Введите корректные ФИО\n(например: Иванов Иван Иванович)";
-                    app.Form.textBox1.Focus();
+                    label1.Text = "Введите корректные ФИО\n(например: Иванов Иван Иванович)";
+                    textBox1.Focus();
                 }
             }
             else if (this.AddBDButton.Text == "Далее ")
             {
-                app.tBD = app.Form.textBox1.Text;
-                if (app.ValidInput(birthday: app.tBD))
+                tBD = textBox1.Text;
+                if (app.ValidInput(birthday: tBD))
                 {
-                    app.Form.label1.Text = $"Сохранить \"{app.tName} ({app.tBD})\"?";
+                    label1.Text = $"Сохранить \"{tName} ({tBD})\"?";
                     this.AddBDButton.Text = "Сохранить";
                     this.ModeButton.Text = "Отменить";
-                    app.Form.textBox1.Text = "";
-                    app.Form.textBox1.Enabled = false;
+                    textBox1.Text = "";
+                    textBox1.Enabled = false;
                 }
                 else
                 {
-                    app.Form.label1.Text = "Введите корректную дату рождения в формате ДД.ММ.ГГГГ\n(например: 02.08.1999)";
-                    app.Form.textBox1.Focus();
+                    label1.Text = "Введите корректную дату рождения в формате ДД.ММ.ГГГГ\n(например: 02.08.1999)";
+                    textBox1.Focus();
                 }
             }
             else if (this.AddBDButton.Text == "Сохранить")
             {
-                app.WriteFile("db.csv", app.AddText(app.Lines, app.tName, app.tBD));
+                app.Persons = app.AddPerson(app.Persons, tName, tBD);
+                app.WriteFile("db.csv", app.UpdateText(app.Persons));
                 this.AddBDButton.Text = "Добавить ДР";
                 this.ModeButton.Text = "ОК";
                 this.ModeButton.Enabled = true;
-                app.Form.label1.Text = $"Сохранено: \"{ app.tName} ({ app.tBD})\"";
+                label1.Text = $"Сохранено: \"{ tName} ({ tBD})\"";
             }
         }
     }
