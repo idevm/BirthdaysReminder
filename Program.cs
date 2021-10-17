@@ -21,16 +21,17 @@ namespace BirthdaysReminder
             catch (System.IO.FileNotFoundException ex)
             {
                 form.label1.Text = ex.Message;
-                form.ModeButton.Enabled = false;
+                form.PreviousButton.Enabled = false;
             }
             catch (FormatException ex)
             {
                 form.label1.Text = ex.Message;
-                form.ModeButton.Enabled = false;
-                form.AddBDButton.Enabled = false;
+                form.PreviousButton.Enabled = false;
+                form.NextButton.Enabled = false;
             }
             Application.Run(form);
         }
+
 
         public static void Today(Form1 form)
         {
@@ -39,12 +40,14 @@ namespace BirthdaysReminder
             form.Text = "Дни рождения сегодня";
         }
 
+
         public static void ThisMonth(Form1 form)
         {
             form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.thisMonth), Mode.thisMonth);
             form.label1.Text = form.app.Text;
             form.Text = "Дни рождения в этом месяце";
         }
+
 
         public static void ThisYear(Form1 form)
         {
