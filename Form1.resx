@@ -121,7 +121,7 @@
     <value>2</value>
   </data>
   <data name="inputBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
+    <value>Bottom, Left, Right</value>
   </data>
   <data name="inputBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 407</value>
@@ -249,6 +249,18 @@
   <data name="ToolStripMenuItemShow.Text" xml:space="preserve">
     <value>Показать</value>
   </data>
+  <data name="ToolStripMenuItemFindName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 34</value>
+  </data>
+  <data name="ToolStripMenuItemFindName.Text" xml:space="preserve">
+    <value>По имени</value>
+  </data>
+  <data name="ToolStripMenuItemFindDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 34</value>
+  </data>
+  <data name="ToolStripMenuItemFindDate.Text" xml:space="preserve">
+    <value>По дате</value>
+  </data>
   <data name="toolStripMenuItemFind.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 29</value>
   </data>
@@ -256,13 +268,13 @@
     <value>Найти</value>
   </data>
   <data name="toolStripMenuItemAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 34</value>
+    <value>192, 34</value>
   </data>
   <data name="toolStripMenuItemAdd.Text" xml:space="preserve">
     <value>Добавить</value>
   </data>
   <data name="toolStripMenuItemRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 34</value>
+    <value>192, 34</value>
   </data>
   <data name="toolStripMenuItemRemove.Text" xml:space="preserve">
     <value>Удалить</value>
@@ -956,7 +968,7 @@
     <value>822, 480</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Дни рождения сегодня</value>
+    <value>Дни рождения</value>
   </data>
   <data name="&gt;&gt;ToolStripMenuItemShow.Name" xml:space="preserve">
     <value>ToolStripMenuItemShow</value>
@@ -986,6 +998,18 @@
     <value>toolStripMenuItemFind</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemFind.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemFindName.Name" xml:space="preserve">
+    <value>ToolStripMenuItemFindName</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemFindName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemFindDate.Name" xml:space="preserve">
+    <value>ToolStripMenuItemFindDate</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemFindDate.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemEdit.Name" xml:space="preserve">
