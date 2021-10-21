@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BirthdaysReminder
 {
     public class Program
     {
+        public static List<Person> prsns = new();
         [STAThread]
         static void Main()
         {
