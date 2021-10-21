@@ -41,6 +41,8 @@ namespace BirthdaysReminder
             this.toolStripMenuItemThisMonth = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAThisYear = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemFind = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemFindName = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemFindDate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,9 +123,23 @@ namespace BirthdaysReminder
             // 
             // toolStripMenuItemFind
             // 
+            this.toolStripMenuItemFind.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemFindName,
+            this.ToolStripMenuItemFindDate});
             this.toolStripMenuItemFind.Name = "toolStripMenuItemFind";
             resources.ApplyResources(this.toolStripMenuItemFind, "toolStripMenuItemFind");
-            this.toolStripMenuItemFind.Click += new System.EventHandler(this.ToolStripMenuItemFind_Click);
+            // 
+            // ToolStripMenuItemFindName
+            // 
+            this.ToolStripMenuItemFindName.Name = "ToolStripMenuItemFindName";
+            resources.ApplyResources(this.ToolStripMenuItemFindName, "ToolStripMenuItemFindName");
+            this.ToolStripMenuItemFindName.Click += new System.EventHandler(this.ToolStripMenuItemFindByName_Click);
+            // 
+            // ToolStripMenuItemFindDate
+            // 
+            this.ToolStripMenuItemFindDate.Name = "ToolStripMenuItemFindDate";
+            resources.ApplyResources(this.ToolStripMenuItemFindDate, "ToolStripMenuItemFindDate");
+            this.ToolStripMenuItemFindDate.Click += new System.EventHandler(this.ToolStripMenuItemFindByDate_Click);
             // 
             // toolStripMenuItemEdit
             // 
@@ -156,7 +172,6 @@ namespace BirthdaysReminder
             this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -183,6 +198,8 @@ namespace BirthdaysReminder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEdit;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAdd;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemove;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindName;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindDate;
     }
 }
 
