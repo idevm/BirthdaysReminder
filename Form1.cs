@@ -16,7 +16,8 @@ namespace BirthdaysReminder
         removingByName,
         removingConfirm,
         removingComplete,
-        finding,
+        findingByName,
+        findingByDate,
         findingComplete
     }
 
@@ -78,12 +79,49 @@ namespace BirthdaysReminder
                     Program.Today(this);
                     break;
                 case State.removingByName:
+                    state = State.today;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.Today(this);
                     break;
                 case State.removingConfirm:
+                    if (Program.prsns.Count != 0)
+                    {
+                        Program.prsns.RemoveAt(0);
+                        if (Program.prsns.Count != 0)
+                        {
+                            label1.Text = $"Удалить {Program.prsns[0].Name}?";
+                            NextButton.Text = "Удалить!";
+                            PreviousButton.Text = "Нет";
+                        }
+                        else
+                        {
+                            app.WriteFile("db.csv", app.UpdateText(app.Persons));
+                            state = State.today;
+                            PreviousButton.Visible = false;
+                            NextButton.Visible = false;
+                            inputBox1.Visible = false;
+                            Program.Today(this);
+                        }
+                    }
                     break;
                 case State.removingComplete:
+                    app.WriteFile("db.csv", app.UpdateText(app.Persons));
+                    state = State.today;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.Today(this);
                     break;
-                case State.finding:
+                case State.findingByName:
+                    state = State.today;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.Today(this);
+                    break;
+                case State.findingByDate:
                     state = State.today;
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
@@ -156,14 +194,75 @@ namespace BirthdaysReminder
                     Text = "Добавление данных";
                     break;
                 case State.removingByName:
+                    string name = inputBox1.Text;
+                    Program.prsns = app.FindPersonByName(app.Persons, name);
+                    Text = "Удаление данных";
+                    if (Program.prsns.Count != 0)
+                    {
+                        state = State.removingConfirm;
+                        label1.Text = $"Удалить {Program.prsns[0].Name}?";
+                        NextButton.Text = "Удалить!";
+                        PreviousButton.Text = "Нет";
+                    }
+                    else
+                    {
+                        label1.Text = "Нет данных для удаления";
+                        state = State.today;
+                        PreviousButton.Visible = false;
+                        NextButton.Visible = false;
+                        inputBox1.Visible = false;
+                        Program.Today(this);
+                    }
                     break;
                 case State.removingConfirm:
+                    if (Program.prsns.Count != 0)
+                    {
+                        app.RemovePerson(app.Persons, Program.prsns[0]);
+                        Program.prsns.RemoveAt(0);
+                        label1.Text = "Удалено";
+                        if (Program.prsns.Count != 0)
+                        {
+                            state = State.removingByName;
+                        }
+                        else
+                        {
+                            state = State.removingComplete;
+                        }
+                    }
+                    else
+                    {
+                        state = State.removingComplete;
+                    }
+                    NextButton.Text = "ОК";
+                    PreviousButton.Text = "Отменить";
                     break;
                 case State.removingComplete:
+                    app.WriteFile("db.csv", app.UpdateText(app.Persons));
+                    state = State.today;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.Today(this);
                     break;
-                case State.finding:
+                case State.findingByName:
                     string txt = inputBox1.Text;
-                    app.Text = app.GetText(app.FindPerson(app.Persons, txt), Mode.findResults);
+                    app.Text = app.GetText(app.FindPersonByName(app.Persons, txt), Mode.findResults);
+                    label1.Text = app.Text;
+                    Text = "Результат поиска";
+                    break;
+                case State.findingByDate:
+                    string[] dateArr = inputBox1.Text.Split(".");
+                    int d = -1;
+                    int m = -1;
+                    int y = -1;
+                    try
+                    {
+                        d = int.Parse(dateArr[0]);
+                        m = int.Parse(dateArr[1]);
+                        y = int.Parse(dateArr[2]);
+                    }
+                    catch (Exception) { }
+                    app.Text = app.GetText(app.FindPersonByDate(app.Persons, d,m,y), Mode.findResults);
                     label1.Text = app.Text;
                     Text = "Результат поиска";
                     break;
@@ -203,16 +302,32 @@ namespace BirthdaysReminder
         }
 
 
-        private void ToolStripMenuItemFind_Click(object sender, EventArgs e)
+        private void ToolStripMenuItemFindByName_Click(object sender, EventArgs e)
         {
-            state = State.finding;
+            state = State.findingByName;
             PreviousButton.Visible = true;
             PreviousButton.Text = "Отменить";
             NextButton.Visible = true;
             NextButton.Text = "Найти";
             inputBox1.Visible = true;
+            inputBox1.Text = "";
             inputBox1.Focus();
-            label1.Text = "Введите текст для поиска и нажмите кнопку 'Найти'";
+            label1.Text = "Введите имя для поиска и нажмите кнопку 'Найти'";
+            Text = "Поиск";
+        }
+
+
+        private void ToolStripMenuItemFindByDate_Click(object sender, EventArgs e)
+        {
+            state = State.findingByDate;
+            PreviousButton.Visible = true;
+            PreviousButton.Text = "Отменить";
+            NextButton.Visible = true;
+            NextButton.Text = "Найти";
+            inputBox1.Visible = true;
+            inputBox1.Text = "";
+            inputBox1.Focus();
+            label1.Text = "Введите дату для поиска и нажмите кнопку 'Найти'";
             Text = "Поиск";
         }
 
