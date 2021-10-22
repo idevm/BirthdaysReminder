@@ -70,10 +70,10 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="PreviousButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="PreviousButton.Text" xml:space="preserve">
-    <value>В этом месяце</value>
+    <value>Отменить</value>
   </data>
   <data name="PreviousButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -100,7 +100,7 @@
     <value>135, 34</value>
   </data>
   <data name="NextButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="NextButton.Text" xml:space="preserve">
     <value>Добавить ДР</value>
@@ -181,7 +181,7 @@
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>label1</value>
+    <value>Напоминалка о днях рождения</value>
   </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -225,20 +225,107 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="toolStripMenuItemToday.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+C</value>
+  </data>
   <data name="toolStripMenuItemToday.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 34</value>
+    <value>327, 34</value>
   </data>
   <data name="toolStripMenuItemToday.Text" xml:space="preserve">
     <value>Сегодня</value>
   </data>
+  <data name="toolStripMenuItemThisMonth.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+M</value>
+  </data>
   <data name="toolStripMenuItemThisMonth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 34</value>
+    <value>327, 34</value>
   </data>
   <data name="toolStripMenuItemThisMonth.Text" xml:space="preserve">
     <value>В этом месяце</value>
   </data>
+  <data name="ToolStripMenuItemJan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemJan.Text" xml:space="preserve">
+    <value>январь</value>
+  </data>
+  <data name="ToolStripMenuItemFeb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemFeb.Text" xml:space="preserve">
+    <value>февраль</value>
+  </data>
+  <data name="ToolStripMenuItemMar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemMar.Text" xml:space="preserve">
+    <value>март</value>
+  </data>
+  <data name="ToolStripMenuItemApr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemApr.Text" xml:space="preserve">
+    <value>апрель</value>
+  </data>
+  <data name="ToolStripMenuItemMay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemMay.Text" xml:space="preserve">
+    <value>май</value>
+  </data>
+  <data name="ToolStripMenuItemJun.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemJun.Text" xml:space="preserve">
+    <value>июнь</value>
+  </data>
+  <data name="ToolStripMenuItemJul.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemJul.Text" xml:space="preserve">
+    <value>июль</value>
+  </data>
+  <data name="ToolStripMenuItemAug.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemAug.Text" xml:space="preserve">
+    <value>август</value>
+  </data>
+  <data name="ToolStripMenuItemSep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemSep.Text" xml:space="preserve">
+    <value>сентябрь</value>
+  </data>
+  <data name="ToolStripMenuItemOct.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemOct.Text" xml:space="preserve">
+    <value>октябрь</value>
+  </data>
+  <data name="ToolStripMenuItemNov.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemNov.Text" xml:space="preserve">
+    <value>ноябрь</value>
+  </data>
+  <data name="ToolStripMenuItemDec.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 34</value>
+  </data>
+  <data name="ToolStripMenuItemDec.Text" xml:space="preserve">
+    <value>декабрь</value>
+  </data>
+  <data name="ToolStripMenuItemChoosenMonth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 34</value>
+  </data>
+  <data name="ToolStripMenuItemChoosenMonth.Text" xml:space="preserve">
+    <value>В выбранном месяце</value>
+  </data>
+  <data name="toolStripMenuItemAThisYear.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+A</value>
+  </data>
   <data name="toolStripMenuItemAThisYear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 34</value>
+    <value>327, 34</value>
   </data>
   <data name="toolStripMenuItemAThisYear.Text" xml:space="preserve">
     <value>Все дни рождения</value>
@@ -249,14 +336,20 @@
   <data name="ToolStripMenuItemShow.Text" xml:space="preserve">
     <value>Показать</value>
   </data>
+  <data name="ToolStripMenuItemFindName.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+F</value>
+  </data>
   <data name="ToolStripMenuItemFindName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 34</value>
+    <value>296, 34</value>
   </data>
   <data name="ToolStripMenuItemFindName.Text" xml:space="preserve">
     <value>По имени</value>
   </data>
+  <data name="ToolStripMenuItemFindDate.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+SHIFT+F</value>
+  </data>
   <data name="ToolStripMenuItemFindDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 34</value>
+    <value>296, 34</value>
   </data>
   <data name="ToolStripMenuItemFindDate.Text" xml:space="preserve">
     <value>По дате</value>
@@ -267,14 +360,20 @@
   <data name="toolStripMenuItemFind.Text" xml:space="preserve">
     <value>Найти</value>
   </data>
+  <data name="toolStripMenuItemAdd.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+W</value>
+  </data>
   <data name="toolStripMenuItemAdd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 34</value>
+    <value>270, 34</value>
   </data>
   <data name="toolStripMenuItemAdd.Text" xml:space="preserve">
     <value>Добавить</value>
   </data>
+  <data name="toolStripMenuItemRemove.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+R</value>
+  </data>
   <data name="toolStripMenuItemRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 34</value>
+    <value>270, 34</value>
   </data>
   <data name="toolStripMenuItemRemove.Text" xml:space="preserve">
     <value>Удалить</value>
@@ -1028,6 +1127,84 @@
     <value>toolStripMenuItemRemove</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemChoosenMonth.Name" xml:space="preserve">
+    <value>ToolStripMenuItemChoosenMonth</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemChoosenMonth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemJan.Name" xml:space="preserve">
+    <value>ToolStripMenuItemJan</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemJan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemFeb.Name" xml:space="preserve">
+    <value>ToolStripMenuItemFeb</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemFeb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemMar.Name" xml:space="preserve">
+    <value>ToolStripMenuItemMar</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemMar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemApr.Name" xml:space="preserve">
+    <value>ToolStripMenuItemApr</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemApr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemMay.Name" xml:space="preserve">
+    <value>ToolStripMenuItemMay</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemMay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemJun.Name" xml:space="preserve">
+    <value>ToolStripMenuItemJun</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemJun.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemJul.Name" xml:space="preserve">
+    <value>ToolStripMenuItemJul</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemJul.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemAug.Name" xml:space="preserve">
+    <value>ToolStripMenuItemAug</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemAug.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemSep.Name" xml:space="preserve">
+    <value>ToolStripMenuItemSep</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemSep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemOct.Name" xml:space="preserve">
+    <value>ToolStripMenuItemOct</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemOct.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemNov.Name" xml:space="preserve">
+    <value>ToolStripMenuItemNov</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemNov.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemDec.Name" xml:space="preserve">
+    <value>ToolStripMenuItemDec</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemDec.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
