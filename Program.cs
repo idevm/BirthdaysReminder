@@ -6,7 +6,8 @@ namespace BirthdaysReminder
 {
     public class Program
     {
-        public static List<Person> prsns = new();
+        public static List<Person> personsToRemove = new();
+
         [STAThread]
         static void Main()
         {
