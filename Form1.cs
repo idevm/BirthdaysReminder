@@ -13,12 +13,12 @@ namespace BirthdaysReminder
         addingBirthday,
         addingConfirm,
         addingComplete,
+        inputNameToTemove,
         removingByName,
         removingConfirm,
         removingComplete,
         findingByName,
-        findingByDate,
-        findingComplete
+        findingByDate
     }
 
     public partial class Form1 : Form
@@ -42,12 +42,6 @@ namespace BirthdaysReminder
         {
             switch (state)
             {
-                case State.today:
-                    break;
-                case State.thisMonth:
-                    break;
-                case State.thisYear:
-                    break;
                 case State.addingName:
                     state = State.today;
                     PreviousButton.Visible = false;
@@ -61,7 +55,7 @@ namespace BirthdaysReminder
                     NextButton.Text = "Далее";
                     inputBox1.Visible = true;
                     inputBox1.Focus();
-                    label1.Text = "Введите ФИО";
+                    label1.Text = "Введите ФИО для добавления в список";
                     Text = "Добавление данных";
                     break;
                 case State.addingConfirm:
@@ -78,6 +72,13 @@ namespace BirthdaysReminder
                     inputBox1.Visible = false;
                     Program.Today(this);
                     break;
+                case State.inputNameToTemove:
+                    state = State.today;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.Today(this);
+                    break;
                 case State.removingByName:
                     state = State.today;
                     PreviousButton.Visible = false;
@@ -86,14 +87,14 @@ namespace BirthdaysReminder
                     Program.Today(this);
                     break;
                 case State.removingConfirm:
-                    if (Program.prsns.Count != 0)
+                    if (Program.personsToRemove.Count != 0)
                     {
-                        Program.prsns.RemoveAt(0);
-                        if (Program.prsns.Count != 0)
+                        Program.personsToRemove.RemoveAt(0);
+                        if (Program.personsToRemove.Count != 0)
                         {
-                            label1.Text = $"Удалить {Program.prsns[0].Name}?";
-                            NextButton.Text = "Удалить!";
+                            label1.Text = $"Удалить {Program.personsToRemove[0].Name}?";
                             PreviousButton.Text = "Нет";
+                            NextButton.Text = "Да";
                         }
                         else
                         {
@@ -128,8 +129,6 @@ namespace BirthdaysReminder
                     inputBox1.Visible = false;
                     Program.Today(this);
                     break;
-                case State.findingComplete:
-                    break;
             }
         }
 
@@ -138,26 +137,20 @@ namespace BirthdaysReminder
         {
             switch (state)
             {
-                case State.today:
-                    break;
-                case State.thisMonth:
-                    break;
-                case State.thisYear:
-                    break;
                 case State.addingName:
-                    inputBox1.Focus();
                     tName = inputBox1.Text;
                     if (app.ValidInput(name: tName))
                     {
                         state = State.addingBirthday;
                         label1.Text = "Введите дату рождения\n(в формате ДД.ММ.ГГГГ)";
                         inputBox1.Text = "";
+                        inputBox1.Focus();
                         NextButton.Text = "Далее ";
                         PreviousButton.Text = "Назад ";
                     }
                     else
                     {
-                        label1.Text = "Введите корректные ФИО\n(например: Иванов Иван Иванович)";
+                        label1.Text = "Введите корректные ФИО\n(например: 'Иванов Иван Иванович')";
                         inputBox1.Focus();
                     }
                     break;
@@ -170,6 +163,7 @@ namespace BirthdaysReminder
                         NextButton.Text = "Сохранить";
                         PreviousButton.Text = "Отменить";
                         inputBox1.Text = "";
+                        inputBox1.Enabled = false;
                     }
                     else
                     {
@@ -189,20 +183,38 @@ namespace BirthdaysReminder
                     state = State.addingName;
                     PreviousButton.Text = "Отменить";
                     NextButton.Text = "Далее";
+                    inputBox1.Enabled = true;
                     inputBox1.Focus();
                     label1.Text = "Введите ФИО";
                     Text = "Добавление данных";
                     break;
-                case State.removingByName:
+                case State.inputNameToTemove:
                     string name = inputBox1.Text;
-                    Program.prsns = app.FindPersonByName(app.Persons, name);
+                    inputBox1.Enabled = false;
+                    Program.personsToRemove = app.FindPersonByName(app.Persons, name);
                     Text = "Удаление данных";
-                    if (Program.prsns.Count != 0)
+                    if (Program.personsToRemove.Count != 0)
+                    {
+                        label1.Text = $"Удалить {Program.personsToRemove[0].Name} ({app.ToString(Program.personsToRemove[0].Birthday)}.{app.ToString(Program.personsToRemove[0].Birthmonth)}.{app.ToString(Program.personsToRemove[0].Birthyear)})?";
+                        PreviousButton.Text = "Нет";
+                        NextButton.Text = "Да";
+                        state = State.removingConfirm;
+                    }
+                    else
+                    {
+                        label1.Text = "Нет данных для удаления";
+                        PreviousButton.Text = "Отменить";
+                        NextButton.Text = "ОК";
+                        state = State.removingComplete;
+                    }
+                    break;
+                case State.removingByName:
+                    if (Program.personsToRemove.Count != 0)
                     {
                         state = State.removingConfirm;
-                        label1.Text = $"Удалить {Program.prsns[0].Name}?";
-                        NextButton.Text = "Удалить!";
+                        label1.Text = $"Удалить {Program.personsToRemove[0].Name} ({app.ToString(Program.personsToRemove[0].Birthday)}.{app.ToString(Program.personsToRemove[0].Birthmonth)}.{app.ToString(Program.personsToRemove[0].Birthyear)})?";
                         PreviousButton.Text = "Нет";
+                        NextButton.Text = "Да";
                     }
                     else
                     {
@@ -215,12 +227,12 @@ namespace BirthdaysReminder
                     }
                     break;
                 case State.removingConfirm:
-                    if (Program.prsns.Count != 0)
+                    if (Program.personsToRemove.Count != 0)
                     {
-                        app.RemovePerson(app.Persons, Program.prsns[0]);
-                        Program.prsns.RemoveAt(0);
-                        label1.Text = "Удалено";
-                        if (Program.prsns.Count != 0)
+                        app.RemovePerson(app.Persons, Program.personsToRemove[0]);
+                        label1.Text = $"Удалено: {Program.personsToRemove[0].Name} ({app.ToString(Program.personsToRemove[0].Birthday)}.{app.ToString(Program.personsToRemove[0].Birthmonth)}.{app.ToString(Program.personsToRemove[0].Birthyear)})";
+                        Program.personsToRemove.RemoveAt(0);
+                        if (Program.personsToRemove.Count != 0)
                         {
                             state = State.removingByName;
                         }
@@ -233,8 +245,8 @@ namespace BirthdaysReminder
                     {
                         state = State.removingComplete;
                     }
-                    NextButton.Text = "ОК";
                     PreviousButton.Text = "Отменить";
+                    NextButton.Text = "ОК";
                     break;
                 case State.removingComplete:
                     app.WriteFile("db.csv", app.UpdateText(app.Persons));
@@ -265,8 +277,6 @@ namespace BirthdaysReminder
                     app.Text = app.GetText(app.FindPersonByDate(app.Persons, d,m,y), Mode.findResults);
                     label1.Text = app.Text;
                     Text = "Результат поиска";
-                    break;
-                case State.findingComplete:
                     break;
             }
         }
@@ -310,9 +320,10 @@ namespace BirthdaysReminder
             NextButton.Visible = true;
             NextButton.Text = "Найти";
             inputBox1.Visible = true;
+            inputBox1.Enabled = true;
             inputBox1.Text = "";
             inputBox1.Focus();
-            label1.Text = "Введите имя для поиска и нажмите кнопку 'Найти'";
+            label1.Text = "Введите имя для поиска и нажмите кнопку 'Найти'\n(например: 'Иванов Иван Иванович')";
             Text = "Поиск";
         }
 
@@ -325,9 +336,10 @@ namespace BirthdaysReminder
             NextButton.Visible = true;
             NextButton.Text = "Найти";
             inputBox1.Visible = true;
+            inputBox1.Enabled = true;
             inputBox1.Text = "";
             inputBox1.Focus();
-            label1.Text = "Введите дату для поиска и нажмите кнопку 'Найти'";
+            label1.Text = "Введите дату для поиска и нажмите кнопку 'Найти'\n(например: '31.12' или '01.01.2001')";
             Text = "Поиск";
         }
 
@@ -340,23 +352,36 @@ namespace BirthdaysReminder
             NextButton.Visible = true;
             NextButton.Text = "Далее";
             inputBox1.Visible = true;
+            inputBox1.Enabled = true;
+            inputBox1.Text = "";
             inputBox1.Focus();
-            label1.Text = "Введите ФИО";
+            label1.Text = "Введите ФИО для добавления в список\n(например: 'Иванов Иван Иванович')";
             Text = "Добавление данных";
         }
 
 
         private void ToolStripMenuItemRemove_Click(object sender, EventArgs e)
         {
-            state = State.removingByName;
+            state = State.inputNameToTemove;
             PreviousButton.Visible = true;
             PreviousButton.Text = "Отменить";
             NextButton.Visible = true;
             NextButton.Text = "Далее";
             inputBox1.Visible = true;
+            inputBox1.Enabled = true;
+            inputBox1.Text = "";
             inputBox1.Focus();
             label1.Text = "Введите ФИО для удаления";
             Text = "Удаление данных";
+        }
+
+
+        private void InputBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                NextButton_Click(sender, e);
+            }
         }
     }
 }
