@@ -46,6 +46,19 @@ namespace BirthdaysReminder
             this.toolStripMenuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemChoosenMonth = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemJan = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemFeb = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemMar = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemApr = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemMay = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemJun = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemJul = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemAug = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemSep = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemOct = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemNov = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemDec = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +85,7 @@ namespace BirthdaysReminder
             resources.ApplyResources(this.inputBox1, "inputBox1");
             this.inputBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.inputBox1.Name = "inputBox1";
+            this.inputBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputBox1_KeyDown);
             // 
             // panel1
             // 
@@ -99,6 +113,7 @@ namespace BirthdaysReminder
             this.ToolStripMenuItemShow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemToday,
             this.toolStripMenuItemThisMonth,
+            this.ToolStripMenuItemChoosenMonth,
             this.toolStripMenuItemAThisYear});
             this.ToolStripMenuItemShow.Name = "ToolStripMenuItemShow";
             resources.ApplyResources(this.ToolStripMenuItemShow, "ToolStripMenuItemShow");
@@ -161,6 +176,84 @@ namespace BirthdaysReminder
             resources.ApplyResources(this.toolStripMenuItemRemove, "toolStripMenuItemRemove");
             this.toolStripMenuItemRemove.Click += new System.EventHandler(this.ToolStripMenuItemRemove_Click);
             // 
+            // ToolStripMenuItemChoosenMonth
+            // 
+            this.ToolStripMenuItemChoosenMonth.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemJan,
+            this.ToolStripMenuItemFeb,
+            this.ToolStripMenuItemMar,
+            this.ToolStripMenuItemApr,
+            this.ToolStripMenuItemMay,
+            this.ToolStripMenuItemJun,
+            this.ToolStripMenuItemJul,
+            this.ToolStripMenuItemAug,
+            this.ToolStripMenuItemSep,
+            this.ToolStripMenuItemOct,
+            this.ToolStripMenuItemNov,
+            this.ToolStripMenuItemDec});
+            this.ToolStripMenuItemChoosenMonth.Name = "ToolStripMenuItemChoosenMonth";
+            resources.ApplyResources(this.ToolStripMenuItemChoosenMonth, "ToolStripMenuItemChoosenMonth");
+            // 
+            // ToolStripMenuItemJan
+            // 
+            this.ToolStripMenuItemJan.Name = "ToolStripMenuItemJan";
+            resources.ApplyResources(this.ToolStripMenuItemJan, "ToolStripMenuItemJan");
+            // 
+            // ToolStripMenuItemFeb
+            // 
+            this.ToolStripMenuItemFeb.Name = "ToolStripMenuItemFeb";
+            resources.ApplyResources(this.ToolStripMenuItemFeb, "ToolStripMenuItemFeb");
+            // 
+            // ToolStripMenuItemMar
+            // 
+            this.ToolStripMenuItemMar.Name = "ToolStripMenuItemMar";
+            resources.ApplyResources(this.ToolStripMenuItemMar, "ToolStripMenuItemMar");
+            // 
+            // ToolStripMenuItemApr
+            // 
+            this.ToolStripMenuItemApr.Name = "ToolStripMenuItemApr";
+            resources.ApplyResources(this.ToolStripMenuItemApr, "ToolStripMenuItemApr");
+            // 
+            // ToolStripMenuItemMay
+            // 
+            this.ToolStripMenuItemMay.Name = "ToolStripMenuItemMay";
+            resources.ApplyResources(this.ToolStripMenuItemMay, "ToolStripMenuItemMay");
+            // 
+            // ToolStripMenuItemJun
+            // 
+            this.ToolStripMenuItemJun.Name = "ToolStripMenuItemJun";
+            resources.ApplyResources(this.ToolStripMenuItemJun, "ToolStripMenuItemJun");
+            // 
+            // ToolStripMenuItemJul
+            // 
+            this.ToolStripMenuItemJul.Name = "ToolStripMenuItemJul";
+            resources.ApplyResources(this.ToolStripMenuItemJul, "ToolStripMenuItemJul");
+            // 
+            // ToolStripMenuItemAug
+            // 
+            this.ToolStripMenuItemAug.Name = "ToolStripMenuItemAug";
+            resources.ApplyResources(this.ToolStripMenuItemAug, "ToolStripMenuItemAug");
+            // 
+            // ToolStripMenuItemSep
+            // 
+            this.ToolStripMenuItemSep.Name = "ToolStripMenuItemSep";
+            resources.ApplyResources(this.ToolStripMenuItemSep, "ToolStripMenuItemSep");
+            // 
+            // ToolStripMenuItemOct
+            // 
+            this.ToolStripMenuItemOct.Name = "ToolStripMenuItemOct";
+            resources.ApplyResources(this.ToolStripMenuItemOct, "ToolStripMenuItemOct");
+            // 
+            // ToolStripMenuItemNov
+            // 
+            this.ToolStripMenuItemNov.Name = "ToolStripMenuItemNov";
+            resources.ApplyResources(this.ToolStripMenuItemNov, "ToolStripMenuItemNov");
+            // 
+            // ToolStripMenuItemDec
+            // 
+            this.ToolStripMenuItemDec.Name = "ToolStripMenuItemDec";
+            resources.ApplyResources(this.ToolStripMenuItemDec, "ToolStripMenuItemDec");
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -200,6 +293,19 @@ namespace BirthdaysReminder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemove;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindName;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindDate;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemChoosenMonth;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemJan;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFeb;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemMar;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemApr;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemMay;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemJun;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemJul;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAug;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSep;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemOct;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemNov;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDec;
     }
 }
 
