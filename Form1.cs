@@ -7,8 +7,8 @@ namespace BirthdaysReminder
     public enum State
     {
         today,
-        thisMonth,
-        thisYear,
+        month,
+        allBDs,
         addingName,
         addingBirthday,
         addingConfirm,
@@ -47,7 +47,7 @@ namespace BirthdaysReminder
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.addingBirthday:
                     state = State.addingName;
@@ -63,28 +63,28 @@ namespace BirthdaysReminder
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.addingComplete:
                     state = State.today;
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.inputNameToTemove:
                     state = State.today;
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.removingByName:
                     state = State.today;
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.removingConfirm:
                     if (Program.personsToRemove.Count != 0)
@@ -103,7 +103,7 @@ namespace BirthdaysReminder
                             PreviousButton.Visible = false;
                             NextButton.Visible = false;
                             inputBox1.Visible = false;
-                            Program.Today(this);
+                            Program.ShowToday(this);
                         }
                     }
                     break;
@@ -113,21 +113,21 @@ namespace BirthdaysReminder
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.findingByName:
                     state = State.today;
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.findingByDate:
                     state = State.today;
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
             }
         }
@@ -175,7 +175,7 @@ namespace BirthdaysReminder
                     state = State.addingComplete;
                     app.Persons = app.AddPerson(app.Persons, tName, tBD);
                     app.WriteFile("db.csv", app.UpdateText(app.Persons));
-                    NextButton.Text = "Добавить еще";
+                    NextButton.Text = "Добавить";
                     PreviousButton.Text = "ОК";
                     label1.Text = $"Сохранено: \"{ tName} ({ tBD})\"";
                     break;
@@ -223,7 +223,7 @@ namespace BirthdaysReminder
                         PreviousButton.Visible = false;
                         NextButton.Visible = false;
                         inputBox1.Visible = false;
-                        Program.Today(this);
+                        Program.ShowToday(this);
                     }
                     break;
                 case State.removingConfirm:
@@ -254,7 +254,7 @@ namespace BirthdaysReminder
                     PreviousButton.Visible = false;
                     NextButton.Visible = false;
                     inputBox1.Visible = false;
-                    Program.Today(this);
+                    Program.ShowToday(this);
                     break;
                 case State.findingByName:
                     string txt = inputBox1.Text;
@@ -288,27 +288,27 @@ namespace BirthdaysReminder
             PreviousButton.Visible = false;
             NextButton.Visible = false;
             inputBox1.Visible = false;
-            Program.Today(this);
+            Program.ShowToday(this);
         }
 
 
         private void ToolStripMenuItemThisMonth_Click(object sender, EventArgs e)
         {
-            state = State.thisMonth;
+            state = State.month;
             PreviousButton.Visible = false;
             NextButton.Visible = false;
             inputBox1.Visible = false;
-            Program.ThisMonth(this);
+            Program.ShowThisMonth(this);
         }
 
 
         private void ToolStripMenuItemAThisYear_Click(object sender, EventArgs e)
         {
-            state = State.thisYear;
+            state = State.allBDs;
             PreviousButton.Visible = false;
             NextButton.Visible = false;
             inputBox1.Visible = false;
-            Program.ThisYear(this);
+            Program.ShowAll(this);
         }
 
 
@@ -382,6 +382,114 @@ namespace BirthdaysReminder
             {
                 NextButton_Click(sender, e);
             }
+        }
+
+        private void ToolStripMenuItemJan_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowJan(this);
+        }
+
+        private void ToolStripMenuItemFeb_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowFeb(this);
+        }
+
+        private void ToolStripMenuItemMar_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowMar(this);
+        }
+
+        private void ToolStripMenuItemApr_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowApr(this);
+        }
+
+        private void ToolStripMenuItemMay_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowMay(this);
+        }
+
+        private void ToolStripMenuItemJun_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowJun(this);
+        }
+
+        private void ToolStripMenuItemJul_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowJul(this);
+        }
+
+        private void ToolStripMenuItemAug_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowAug(this);
+        }
+
+        private void ToolStripMenuItemSep_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowSep(this);
+        }
+
+        private void ToolStripMenuItemOct_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowOct(this);
+        }
+
+        private void ToolStripMenuItemNov_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowNov(this);
+        }
+
+        private void ToolStripMenuItemDec_Click(object sender, EventArgs e)
+        {
+            state = State.month;
+            PreviousButton.Visible = false;
+            NextButton.Visible = false;
+            inputBox1.Visible = false;
+            Program.ShowDec(this);
         }
     }
 }
