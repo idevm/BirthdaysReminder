@@ -1,2 +1,2 @@
 # BirthdaysReminder
-Simple WindowsForms app for showing birthdays everyday
+Simple WindowsForms app for managing birthdays
