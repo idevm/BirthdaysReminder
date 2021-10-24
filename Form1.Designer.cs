@@ -59,6 +59,7 @@ namespace BirthdaysReminder
             this.toolStripMenuItemEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAdd = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemRemoveAll = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +86,7 @@ namespace BirthdaysReminder
             resources.ApplyResources(this.inputBox1, "inputBox1");
             this.inputBox1.BackColor = System.Drawing.SystemColors.Control;
             this.inputBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.inputBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.inputBox1.Name = "inputBox1";
             this.inputBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InputBox1_KeyDown);
             // 
@@ -235,6 +237,7 @@ namespace BirthdaysReminder
             this.ToolStripMenuItemFindDate});
             this.toolStripMenuItemFind.Name = "toolStripMenuItemFind";
             resources.ApplyResources(this.toolStripMenuItemFind, "toolStripMenuItemFind");
+            this.toolStripMenuItemFind.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
             // ToolStripMenuItemFindName
             // 
@@ -252,7 +255,8 @@ namespace BirthdaysReminder
             // 
             this.toolStripMenuItemEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemAdd,
-            this.toolStripMenuItemRemove});
+            this.toolStripMenuItemRemove,
+            this.ToolStripMenuItemRemoveAll});
             this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
             resources.ApplyResources(this.toolStripMenuItemEdit, "toolStripMenuItemEdit");
             // 
@@ -267,6 +271,12 @@ namespace BirthdaysReminder
             this.toolStripMenuItemRemove.Name = "toolStripMenuItemRemove";
             resources.ApplyResources(this.toolStripMenuItemRemove, "toolStripMenuItemRemove");
             this.toolStripMenuItemRemove.Click += new System.EventHandler(this.ToolStripMenuItemRemove_Click);
+            // 
+            // ToolStripMenuItemRemoveAll
+            // 
+            this.ToolStripMenuItemRemoveAll.Name = "ToolStripMenuItemRemoveAll";
+            resources.ApplyResources(this.ToolStripMenuItemRemoveAll, "ToolStripMenuItemRemoveAll");
+            this.ToolStripMenuItemRemoveAll.Click += new System.EventHandler(this.ToolStripMenuItemRemoveAll_Click);
             // 
             // Form1
             // 
@@ -306,7 +316,6 @@ namespace BirthdaysReminder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEdit;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAdd;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemove;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindName;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindDate;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemChoosenMonth;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemJan;
@@ -321,6 +330,8 @@ namespace BirthdaysReminder
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemOct;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemNov;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDec;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemRemoveAll;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemFindName;
     }
 }
 
