@@ -17,6 +17,7 @@ namespace BirthdaysReminder
         removingByName,
         removingConfirm,
         removingComplete,
+        removingAll,
         findingByName,
         findingByDate
     }
@@ -37,97 +38,193 @@ namespace BirthdaysReminder
 
         public string tBD = "";
 
+        public int ndx = 1;
+
+        public List<Person> personsToRemove = new();
+
+        public int personsToRemoveCount = 0;
+
+
+        private void ManageForm(State st, Mode md = Mode.thisMonth)
+        {
+            switch (st)
+            {
+                case State.today:
+                    state = State.today;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.ShowToday(this);
+                    break;
+                case State.month:
+                    state = State.month;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.ShowMonth(this, md);
+                    break;
+                case State.allBDs:
+                    state = State.allBDs;
+                    PreviousButton.Visible = false;
+                    NextButton.Visible = false;
+                    inputBox1.Visible = false;
+                    Program.ShowAll(this);
+                    break;
+                case State.addingName:
+                    state = State.addingName;
+                    PreviousButton.Visible = true;
+                    PreviousButton.Text = "Отменить";
+                    NextButton.Visible = true;
+                    NextButton.Text = "Далее";
+                    inputBox1.Visible = true;
+                    inputBox1.Enabled = true;
+                    inputBox1.Text = "";
+                    inputBox1.Focus();
+                    label1.Text = "Введите ФИО для добавления в список\n(например: 'Иванов Иван Иванович')";
+                    Text = "Добавление данных";
+                    break;
+                case State.addingBirthday:
+                    state = State.addingBirthday;
+                    label1.Text = "Введите дату рождения\n(в формате ДД.ММ.ГГГГ)";
+                    inputBox1.Text = "";
+                    inputBox1.Focus();
+                    NextButton.Text = "Далее ";
+                    PreviousButton.Text = "Назад ";
+                    break;
+                case State.addingConfirm:
+                    state = State.addingConfirm;
+                    label1.Text = $"Сохранить \"{tName} ({tBD})\"?";
+                    NextButton.Text = "Сохранить";
+                    PreviousButton.Text = "Отменить";
+                    inputBox1.Text = "";
+                    inputBox1.Enabled = false;
+                    break;
+                case State.addingComplete:
+                    state = State.addingComplete;
+                    NextButton.Text = "Добавить";
+                    PreviousButton.Text = "ОК";
+                    label1.Text = $"Сохранено: \"{ tName} ({ tBD})\"";
+                    break;
+                case State.inputNameToTemove:
+                    state = State.inputNameToTemove;
+                    PreviousButton.Visible = true;
+                    PreviousButton.Text = "Отменить";
+                    NextButton.Visible = true;
+                    NextButton.Text = "Далее";
+                    inputBox1.Visible = true;
+                    inputBox1.Enabled = true;
+                    inputBox1.Text = "";
+                    inputBox1.Focus();
+                    label1.Text = "Введите ФИО для удаления";
+                    Text = "Удаление данных";
+                    break;
+                case State.removingByName:
+                    state = State.removingByName;
+                    PreviousButton.Text = "Отменить";
+                    NextButton.Text = "ОК";
+                    break;
+                case State.removingConfirm:
+                    state = State.removingConfirm;
+                    label1.Text = $"Совпадение с '{tName}' {ndx++} из {personsToRemoveCount}:\n\nУдалить {personsToRemove[0].Name} ({app.ToString(personsToRemove[0].Birthday)}.{app.ToString(personsToRemove[0].Birthmonth)}.{app.ToString(personsToRemove[0].Birthyear)})?";
+                    PreviousButton.Text = "Нет";
+                    NextButton.Text = "Да";
+                    break;
+                case State.removingComplete:
+                    state = State.removingComplete;
+                    PreviousButton.Text = "Отменить";
+                    NextButton.Text = "ОК";
+                    break;
+                case State.removingAll:
+                    state = State.removingAll;
+                    PreviousButton.Visible = true;
+                    PreviousButton.Text = "Отменить";
+                    PreviousButton.Focus();
+                    NextButton.Visible = true;
+                    NextButton.Text = "Удалить";
+                    inputBox1.Visible = true;
+                    inputBox1.Enabled = false;
+                    inputBox1.Text = "";
+                    label1.Text = "Удалить все записи?\nБаза данных будет очищена";
+                    Text = "Удаление всех данных";
+                    break;
+                case State.findingByName:
+                    state = State.findingByName;
+                    PreviousButton.Visible = true;
+                    PreviousButton.Text = "Отменить";
+                    NextButton.Visible = true;
+                    NextButton.Text = "Найти";
+                    inputBox1.Visible = true;
+                    inputBox1.Enabled = true;
+                    inputBox1.Text = "";
+                    inputBox1.Focus();
+                    label1.Text = "Введите имя для поиска и нажмите кнопку 'Найти'\n(например: 'Иванов Иван Иванович')";
+                    Text = "Поиск";
+                    break;
+                case State.findingByDate:
+                    state = State.findingByDate;
+                    PreviousButton.Visible = true;
+                    PreviousButton.Text = "Отменить";
+                    NextButton.Visible = true;
+                    NextButton.Text = "Найти";
+                    inputBox1.Visible = true;
+                    inputBox1.Enabled = true;
+                    inputBox1.Text = "";
+                    inputBox1.Focus();
+                    label1.Text = "Введите дату для поиска и нажмите кнопку 'Найти'\n(например: '31.12' или '01.01.2001')";
+                    Text = "Поиск";
+                    break;
+            }
+        }
+
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
             switch (state)
             {
                 case State.addingName:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
                 case State.addingBirthday:
-                    state = State.addingName;
-                    PreviousButton.Text = "Отменить";
-                    NextButton.Text = "Далее";
-                    inputBox1.Visible = true;
-                    inputBox1.Focus();
-                    label1.Text = "Введите ФИО для добавления в список";
-                    Text = "Добавление данных";
+                    ManageForm(State.addingName);
                     break;
                 case State.addingConfirm:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
                 case State.addingComplete:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
                 case State.inputNameToTemove:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
                 case State.removingByName:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
                 case State.removingConfirm:
-                    if (Program.personsToRemove.Count != 0)
+                    if (personsToRemove.Count != 0)
                     {
-                        Program.personsToRemove.RemoveAt(0);
-                        if (Program.personsToRemove.Count != 0)
+                        personsToRemove.RemoveAt(0);
+                        if (personsToRemove.Count != 0)
                         {
-                            label1.Text = $"Удалить {Program.personsToRemove[0].Name}?";
-                            PreviousButton.Text = "Нет";
-                            NextButton.Text = "Да";
+                            ManageForm(State.removingConfirm);
                         }
                         else
                         {
                             app.WriteFile("db.csv", app.UpdateText(app.Persons));
-                            state = State.today;
-                            PreviousButton.Visible = false;
-                            NextButton.Visible = false;
-                            inputBox1.Visible = false;
-                            Program.ShowToday(this);
+                            ManageForm(State.today);
                         }
                     }
                     break;
                 case State.removingComplete:
-                    app.WriteFile("db.csv", app.UpdateText(app.Persons));
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
+                    break;
+                case State.removingAll:
+                    ManageForm(State.today);
                     break;
                 case State.findingByName:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
                 case State.findingByDate:
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
                     break;
             }
         }
@@ -141,12 +238,7 @@ namespace BirthdaysReminder
                     tName = inputBox1.Text;
                     if (app.ValidInput(name: tName))
                     {
-                        state = State.addingBirthday;
-                        label1.Text = "Введите дату рождения\n(в формате ДД.ММ.ГГГГ)";
-                        inputBox1.Text = "";
-                        inputBox1.Focus();
-                        NextButton.Text = "Далее ";
-                        PreviousButton.Text = "Назад ";
+                        ManageForm(State.addingBirthday);
                     }
                     else
                     {
@@ -158,12 +250,7 @@ namespace BirthdaysReminder
                     tBD = inputBox1.Text;
                     if (app.ValidInput(birthday: tBD))
                     {
-                        state = State.addingConfirm;
-                        label1.Text = $"Сохранить \"{tName} ({tBD})\"?";
-                        NextButton.Text = "Сохранить";
-                        PreviousButton.Text = "Отменить";
-                        inputBox1.Text = "";
-                        inputBox1.Enabled = false;
+                        ManageForm(State.addingConfirm);
                     }
                     else
                     {
@@ -172,93 +259,72 @@ namespace BirthdaysReminder
                     }
                     break;
                 case State.addingConfirm:
-                    state = State.addingComplete;
+                    ManageForm(State.addingComplete);
                     app.Persons = app.AddPerson(app.Persons, tName, tBD);
                     app.WriteFile("db.csv", app.UpdateText(app.Persons));
-                    NextButton.Text = "Добавить";
-                    PreviousButton.Text = "ОК";
-                    label1.Text = $"Сохранено: \"{ tName} ({ tBD})\"";
                     break;
                 case State.addingComplete:
-                    state = State.addingName;
-                    PreviousButton.Text = "Отменить";
-                    NextButton.Text = "Далее";
-                    inputBox1.Enabled = true;
-                    inputBox1.Focus();
-                    label1.Text = "Введите ФИО";
-                    Text = "Добавление данных";
+                    ManageForm(State.addingName);
                     break;
                 case State.inputNameToTemove:
-                    string name = inputBox1.Text;
+                    tName = inputBox1.Text;
+                    ndx = 1;
                     inputBox1.Enabled = false;
-                    Program.personsToRemove = app.FindPersonByName(app.Persons, name);
-                    Text = "Удаление данных";
-                    if (Program.personsToRemove.Count != 0)
+                    personsToRemove = app.FindPersonByName(app.Persons, tName);
+                    personsToRemoveCount = personsToRemove.Count;
+                    if (personsToRemove.Count != 0)
                     {
-                        label1.Text = $"Удалить {Program.personsToRemove[0].Name} ({app.ToString(Program.personsToRemove[0].Birthday)}.{app.ToString(Program.personsToRemove[0].Birthmonth)}.{app.ToString(Program.personsToRemove[0].Birthyear)})?";
-                        PreviousButton.Text = "Нет";
-                        NextButton.Text = "Да";
-                        state = State.removingConfirm;
+                        ManageForm(State.removingConfirm);
                     }
                     else
                     {
                         label1.Text = "Нет данных для удаления";
-                        PreviousButton.Text = "Отменить";
-                        NextButton.Text = "ОК";
-                        state = State.removingComplete;
+                        ManageForm(State.removingComplete);
                     }
                     break;
                 case State.removingByName:
-                    if (Program.personsToRemove.Count != 0)
+                    if (personsToRemove.Count != 0)
                     {
-                        state = State.removingConfirm;
-                        label1.Text = $"Удалить {Program.personsToRemove[0].Name} ({app.ToString(Program.personsToRemove[0].Birthday)}.{app.ToString(Program.personsToRemove[0].Birthmonth)}.{app.ToString(Program.personsToRemove[0].Birthyear)})?";
-                        PreviousButton.Text = "Нет";
-                        NextButton.Text = "Да";
+                        ManageForm(State.removingConfirm);
                     }
                     else
                     {
                         label1.Text = "Нет данных для удаления";
-                        state = State.today;
-                        PreviousButton.Visible = false;
-                        NextButton.Visible = false;
-                        inputBox1.Visible = false;
-                        Program.ShowToday(this);
+                        ManageForm(State.today);
                     }
                     break;
                 case State.removingConfirm:
-                    if (Program.personsToRemove.Count != 0)
+                    if (personsToRemove.Count != 0)
                     {
-                        app.RemovePerson(app.Persons, Program.personsToRemove[0]);
-                        label1.Text = $"Удалено: {Program.personsToRemove[0].Name} ({app.ToString(Program.personsToRemove[0].Birthday)}.{app.ToString(Program.personsToRemove[0].Birthmonth)}.{app.ToString(Program.personsToRemove[0].Birthyear)})";
-                        Program.personsToRemove.RemoveAt(0);
-                        if (Program.personsToRemove.Count != 0)
+                        app.RemovePerson(app.Persons, personsToRemove[0]);
+                        label1.Text = $"Удалено: {personsToRemove[0].Name} ({app.ToString(personsToRemove[0].Birthday)}.{app.ToString(personsToRemove[0].Birthmonth)}.{app.ToString(personsToRemove[0].Birthyear)})";
+                        personsToRemove.RemoveAt(0);
+                        if (personsToRemove.Count != 0)
                         {
-                            state = State.removingByName;
+                            ManageForm(State.removingByName);
                         }
                         else
                         {
-                            state = State.removingComplete;
+                            ManageForm(State.removingComplete);
                         }
                     }
                     else
                     {
-                        state = State.removingComplete;
+                        ManageForm(State.removingComplete);
                     }
-                    PreviousButton.Text = "Отменить";
-                    NextButton.Text = "ОК";
                     break;
                 case State.removingComplete:
                     app.WriteFile("db.csv", app.UpdateText(app.Persons));
-                    state = State.today;
-                    PreviousButton.Visible = false;
-                    NextButton.Visible = false;
-                    inputBox1.Visible = false;
-                    Program.ShowToday(this);
+                    ManageForm(State.today);
+                    break;
+                case State.removingAll:
+                    app.Persons = new();
+                    app.WriteFile("db.csv", app.UpdateText(app.Persons));
+                    ManageForm(State.allBDs);
                     break;
                 case State.findingByName:
-                    string txt = inputBox1.Text;
-                    app.Text = app.GetText(app.FindPersonByName(app.Persons, txt), Mode.findResults);
+                    tName = inputBox1.Text;
+                    app.Text = app.GetText(app.FindPersonByName(app.Persons, tName), Mode.findResults);
                     label1.Text = app.Text;
                     Text = "Результат поиска";
                     break;
@@ -284,212 +350,127 @@ namespace BirthdaysReminder
 
         private void ToolStripMenuItemToday_Click(object sender, EventArgs e)
         {
-            state = State.today;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowToday(this);
+            ManageForm(State.today);
         }
 
 
         private void ToolStripMenuItemThisMonth_Click(object sender, EventArgs e)
         {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowThisMonth(this);
+            ManageForm(State.month);
         }
 
 
         private void ToolStripMenuItemAThisYear_Click(object sender, EventArgs e)
         {
-            state = State.allBDs;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowAll(this);
+            ManageForm(State.allBDs);
         }
 
 
         private void ToolStripMenuItemFindByName_Click(object sender, EventArgs e)
         {
-            state = State.findingByName;
-            PreviousButton.Visible = true;
-            PreviousButton.Text = "Отменить";
-            NextButton.Visible = true;
-            NextButton.Text = "Найти";
-            inputBox1.Visible = true;
-            inputBox1.Enabled = true;
-            inputBox1.Text = "";
-            inputBox1.Focus();
-            label1.Text = "Введите имя для поиска и нажмите кнопку 'Найти'\n(например: 'Иванов Иван Иванович')";
-            Text = "Поиск";
+            ManageForm(State.findingByName);
         }
 
 
         private void ToolStripMenuItemFindByDate_Click(object sender, EventArgs e)
         {
-            state = State.findingByDate;
-            PreviousButton.Visible = true;
-            PreviousButton.Text = "Отменить";
-            NextButton.Visible = true;
-            NextButton.Text = "Найти";
-            inputBox1.Visible = true;
-            inputBox1.Enabled = true;
-            inputBox1.Text = "";
-            inputBox1.Focus();
-            label1.Text = "Введите дату для поиска и нажмите кнопку 'Найти'\n(например: '31.12' или '01.01.2001')";
-            Text = "Поиск";
+            ManageForm(State.findingByDate);
         }
 
 
         private void ToolStripMenuItemAdd_Click(object sender, EventArgs e)
         {
-            state = State.addingName;
-            PreviousButton.Visible = true;
-            PreviousButton.Text = "Отменить";
-            NextButton.Visible = true;
-            NextButton.Text = "Далее";
-            inputBox1.Visible = true;
-            inputBox1.Enabled = true;
-            inputBox1.Text = "";
-            inputBox1.Focus();
-            label1.Text = "Введите ФИО для добавления в список\n(например: 'Иванов Иван Иванович')";
-            Text = "Добавление данных";
+            ManageForm(State.addingName);
         }
 
 
         private void ToolStripMenuItemRemove_Click(object sender, EventArgs e)
         {
-            state = State.inputNameToTemove;
-            PreviousButton.Visible = true;
-            PreviousButton.Text = "Отменить";
-            NextButton.Visible = true;
-            NextButton.Text = "Далее";
-            inputBox1.Visible = true;
-            inputBox1.Enabled = true;
-            inputBox1.Text = "";
-            inputBox1.Focus();
-            label1.Text = "Введите ФИО для удаления";
-            Text = "Удаление данных";
+            ManageForm(State.inputNameToTemove);
+        }
+
+
+        private void ToolStripMenuItemRemoveAll_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.removingAll);
+        }
+
+
+        private void ToolStripMenuItemJan_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.jan);
+        }
+
+
+        private void ToolStripMenuItemFeb_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.feb);
+        }
+
+
+        private void ToolStripMenuItemMar_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.mar);
+        }
+
+
+        private void ToolStripMenuItemApr_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.apr);
+        }
+
+
+        private void ToolStripMenuItemMay_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.may);
+        }
+
+
+        private void ToolStripMenuItemJun_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.jun);
+        }
+
+
+        private void ToolStripMenuItemJul_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.jul);
+        }
+
+
+        private void ToolStripMenuItemAug_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.aug);
+        }
+
+
+        private void ToolStripMenuItemSep_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.sep);
+        }
+
+
+        private void ToolStripMenuItemOct_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.oct);
+        }
+
+
+        private void ToolStripMenuItemNov_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.nov);
+        }
+
+
+        private void ToolStripMenuItemDec_Click(object sender, EventArgs e)
+        {
+            ManageForm(State.month, Mode.dec);
         }
 
 
         private void InputBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                NextButton_Click(sender, e);
-            }
-        }
-
-        private void ToolStripMenuItemJan_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowJan(this);
-        }
-
-        private void ToolStripMenuItemFeb_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowFeb(this);
-        }
-
-        private void ToolStripMenuItemMar_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowMar(this);
-        }
-
-        private void ToolStripMenuItemApr_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowApr(this);
-        }
-
-        private void ToolStripMenuItemMay_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowMay(this);
-        }
-
-        private void ToolStripMenuItemJun_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowJun(this);
-        }
-
-        private void ToolStripMenuItemJul_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowJul(this);
-        }
-
-        private void ToolStripMenuItemAug_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowAug(this);
-        }
-
-        private void ToolStripMenuItemSep_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowSep(this);
-        }
-
-        private void ToolStripMenuItemOct_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowOct(this);
-        }
-
-        private void ToolStripMenuItemNov_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowNov(this);
-        }
-
-        private void ToolStripMenuItemDec_Click(object sender, EventArgs e)
-        {
-            state = State.month;
-            PreviousButton.Visible = false;
-            NextButton.Visible = false;
-            inputBox1.Visible = false;
-            Program.ShowDec(this);
+            if (e.KeyCode == Keys.Enter) NextButton_Click(sender, e);
         }
     }
 }
