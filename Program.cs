@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BirthdaysReminder
 {
     public class Program
     {
-        public static List<Person> personsToRemove = new();
-
         [STAThread]
         static void Main()
         {
@@ -44,106 +41,52 @@ namespace BirthdaysReminder
         }
 
 
-        public static void ShowThisMonth(Form1 form)
+        public static void ShowMonth(Form1 form, Mode md = Mode.thisMonth)
         {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.thisMonth), Mode.thisMonth);
+            switch (md)
+            {
+                case Mode.thisMonth:
+                    form.Text = "Дни рождения в этом месяце";
+                    break;
+                case Mode.jan:
+                    form.Text = "Дни рождения в январе";
+                    break;
+                case Mode.feb:
+                    form.Text = "Дни рождения в феврале";
+                    break;
+                case Mode.mar:
+                    form.Text = "Дни рождения в марте";
+                    break;
+                case Mode.apr:
+                    form.Text = "Дни рождения в апреле";
+                    break;
+                case Mode.may:
+                    form.Text = "Дни рождения в мае";
+                    break;
+                case Mode.jun:
+                    form.Text = "Дни рождения в июне";
+                    break;
+                case Mode.jul:
+                    form.Text = "Дни рождения в июле";
+                    break;
+                case Mode.aug:
+                    form.Text = "Дни рождения в августе";
+                    break;
+                case Mode.sep:
+                    form.Text = "Дни рождения в сентябре";
+                    break;
+                case Mode.oct:
+                    form.Text = "Дни рождения в октябре";
+                    break;
+                case Mode.nov:
+                    form.Text = "Дни рождения в ноябре";
+                    break;
+                case Mode.dec:
+                    form.Text = "Дни рождения в декабре";
+                    break;
+            }
+            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, md), md);
             form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в этом месяце";
-        }
-
-
-        public static void ShowJan(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.jan), Mode.jan);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в январе";
-        }
-
-
-        public static void ShowFeb(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.feb), Mode.feb);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в феврале";
-        }
-
-        public static void ShowMar(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.mar), Mode.mar);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в марте";
-        }
-
-
-        public static void ShowApr(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.apr), Mode.apr);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в апреле";
-        }
-
-
-        public static void ShowMay(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.may), Mode.may);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в мае";
-        }
-
-
-        public static void ShowJun(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.jun), Mode.jun);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в июне";
-        }
-
-
-        public static void ShowJul(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.jul), Mode.jul);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в июле";
-        }
-
-
-        public static void ShowAug(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.aug), Mode.aug);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в августе";
-        }
-
-
-        public static void ShowSep(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.sep), Mode.sep);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в сентябре";
-        }
-
-
-        public static void ShowOct(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.oct), Mode.oct);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в октябре";
-        }
-
-
-        public static void ShowNov(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.nov), Mode.nov);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в ноябре";
-        }
-
-
-        public static void ShowDec(Form1 form)
-        {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.dec), Mode.dec);
-            form.label1.Text = form.app.Text;
-            form.Text = "Дни рождения в декабре";
         }
 
 
