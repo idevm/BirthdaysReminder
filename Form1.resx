@@ -432,6 +432,12 @@
   <data name="toolStripMenuItemRemove.Text" xml:space="preserve">
     <value>Удалить из списка</value>
   </data>
+  <data name="ToolStripMenuItemRemoveAll.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 34</value>
+  </data>
+  <data name="ToolStripMenuItemRemoveAll.Text" xml:space="preserve">
+    <value>Удалить все записи</value>
+  </data>
   <data name="toolStripMenuItemEdit.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 29</value>
   </data>
@@ -1120,6 +1126,9 @@
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>822, 480</value>
   </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Дни рождения</value>
   </data>
@@ -1259,6 +1268,12 @@
     <value>toolStripMenuItemRemove</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemRemoveAll.Name" xml:space="preserve">
+    <value>ToolStripMenuItemRemoveAll</value>
+  </data>
+  <data name="&gt;&gt;ToolStripMenuItemRemoveAll.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
