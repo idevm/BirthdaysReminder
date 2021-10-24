@@ -59,6 +59,7 @@ namespace BirthdaysReminder
             {
                 System.IO.FileNotFoundException noFile = new(
                     "Не найден файл с данными, а именно: " + ex.Message);
+                WriteFile("db.csv", "");
                 throw noFile;
             }
         }
@@ -66,11 +67,11 @@ namespace BirthdaysReminder
 
         public List<Person> GetPeopleList(List<string> lines)
         {
+            List<Person> persons = new();
             if (lines == null || lines.Count == 0)
             {
-                throw new FormatException("Ошибка: отсутсвуют данные");
+                return persons;
             }
-            List<Person> persons = new();
             foreach (string line in lines)
             {
                 try
@@ -407,7 +408,7 @@ namespace BirthdaysReminder
             string name,
             string birthday)
         {
-            if (persons == null)
+            if (persons == null || persons.Count == 0)
             {
                 persons = new();
             }
@@ -448,7 +449,7 @@ namespace BirthdaysReminder
         {
             if (persons == null || persons.Count == 0)
             {
-                throw new FormatException("Ошибка: отсутсвуют данные");
+                return persons;
             }
             if (personToRemove == null)
             {
@@ -463,7 +464,7 @@ namespace BirthdaysReminder
         {
             if (persons == null || persons.Count == 0)
             {
-                throw new FormatException("Ошибка: отсутсвуют данные");
+                return persons;
             }
             return persons.FindAll(x => x.Name.Contains(name));
         }
@@ -477,7 +478,7 @@ namespace BirthdaysReminder
         {
             if (persons == null || persons.Count == 0)
             {
-                throw new FormatException("Ошибка: отсутсвуют данные");
+                return persons;
             }
             return persons.FindAll(x =>
             {
@@ -491,11 +492,11 @@ namespace BirthdaysReminder
 
         public string UpdateText(List<Person> persons)
         {
+            StringBuilder text = new("");
             if (persons == null || persons.Count == 0)
             {
-                throw new FormatException("Ошибка: отсутсвуют данные");
+                return text.ToString();
             }
-            StringBuilder text = new();
             try
             {
                 persons.Sort();
