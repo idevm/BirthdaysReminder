@@ -324,8 +324,7 @@ namespace BirthdaysReminder
                     break;
                 case State.findingByName:
                     tName = inputBox1.Text;
-                    app.Text = app.GetText(app.FindPersonByName(app.Persons, tName), Mode.findResults);
-                    label1.Text = app.Text;
+                    label1.Text = app.GetText(app.FindPersonByName(app.Persons, tName), Mode.findResults);
                     Text = "Результат поиска";
                     break;
                 case State.findingByDate:
@@ -340,8 +339,7 @@ namespace BirthdaysReminder
                         y = int.Parse(dateArr[2]);
                     }
                     catch (Exception) { }
-                    app.Text = app.GetText(app.FindPersonByDate(app.Persons, d,m,y), Mode.findResults);
-                    label1.Text = app.Text;
+                    label1.Text = app.GetText(app.FindPersonByDate(app.Persons, d,m,y), Mode.findResults);
                     Text = "Результат поиска";
                     break;
             }
