@@ -35,8 +35,7 @@ namespace BirthdaysReminder
 
         public static void ShowToday(Form1 form)
         {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons));
-            form.label1.Text = form.app.Text;
+            form.label1.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons));
             form.Text = "Дни рождения сегодня";
         }
 
@@ -85,15 +84,13 @@ namespace BirthdaysReminder
                     form.Text = "Дни рождения в декабре";
                     break;
             }
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, md), md);
-            form.label1.Text = form.app.Text;
+            form.label1.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, md), md);
         }
 
 
         public static void ShowAll(Form1 form)
         {
-            form.app.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.all), Mode.all);
-            form.label1.Text = form.app.Text;
+            form.label1.Text = form.app.GetText(form.app.PeopleListFilter(form.app.Persons, Mode.all), Mode.all);
             form.Text = "Все дни рождения";
         }
     }
