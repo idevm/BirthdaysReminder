@@ -11,8 +11,10 @@
     <Copyright>idevm</Copyright>
     <PackageIcon>balloon.ico</PackageIcon>
     <PackageIconUrl />
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <Description>Приложение-менеджер дней рождений</Description>
+    <AssemblyVersion>2.1.1.0</AssemblyVersion>
+    <FileVersion>2.1.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -158,7 +158,7 @@ namespace BirthdaysReminder
                     inputBox1.Text = "";
                     inputBox1.Focus();
                     label1.Text = "Введите имя для поиска и нажмите кнопку 'Найти'\n(например: 'Иванов Иван Иванович')";
-                    Text = "Поиск";
+                    Text = "Поиск по имени";
                     break;
                 case State.findingByDate:
                     state = State.findingByDate;
@@ -171,7 +171,7 @@ namespace BirthdaysReminder
                     inputBox1.Text = "";
                     inputBox1.Focus();
                     label1.Text = "Введите дату для поиска и нажмите кнопку 'Найти'\n(например: '31.12' или '01.01.2001')";
-                    Text = "Поиск";
+                    Text = "Поиск по дате";
                     break;
             }
         }
@@ -325,7 +325,7 @@ namespace BirthdaysReminder
                 case State.findingByName:
                     tName = inputBox1.Text;
                     label1.Text = app.GetText(app.FindPersonByName(app.Persons, tName), Mode.findResults);
-                    Text = "Результат поиска";
+                    Text = "Результат поиска по имени";
                     break;
                 case State.findingByDate:
                     string[] dateArr = inputBox1.Text.Split(".");
@@ -340,7 +340,7 @@ namespace BirthdaysReminder
                     }
                     catch (Exception) { }
                     label1.Text = app.GetText(app.FindPersonByDate(app.Persons, d,m,y), Mode.findResults);
-                    Text = "Результат поиска";
+                    Text = "Результат поиска по дате";
                     break;
             }
         }
